@@ -107,7 +107,7 @@ export default function Hero() {
       >
         {/* TOP LINE */}
         <motion.p
-          className="tracking-[0.55em] uppercase mb-5 sm:mb-6"
+          className="tracking-[0.55em] uppercase mb-3 sm:mb-6"
           style={{
             fontSize: isMobile ? '10px' : '11px',
             color: 'rgba(196,101,26,0.75)',
@@ -125,12 +125,12 @@ export default function Hero() {
 
         {/* TITLE */}
         <motion.h1
-          className="text-white leading-none mb-5 sm:mb-6"
-          style={{
-            fontFamily: 'var(--font-bebas)',
-            fontSize: isMobile ? 'clamp(2.8rem, 11vw, 3.5rem)' : '8rem',
-            letterSpacing: '0.08em',
-          }}
+          className="text-white leading-none mb-3 sm:mb-6"
+style={{
+  fontFamily: 'var(--font-bebas)',
+  fontSize: isMobile ? 'clamp(2.4rem, 10vw, 3.2rem)' : '8rem',
+  letterSpacing: '0.08em',
+}}
           variants={{
             hidden: { opacity: 0, y: 30 },
             visible: { opacity: 1, y: 0 },
@@ -158,7 +158,7 @@ export default function Hero() {
 
         {/* TAGLINE */}
         <motion.p
-          className="max-w-2xl mx-auto mb-10 sm:mb-12 px-2 sm:px-0"
+          className="max-w-2xl mx-auto mb-6 sm:mb-12 px-2 sm:px-0"
           style={{
             fontSize: isMobile ? '13px' : '15px',
             letterSpacing: '0.18em',
@@ -178,7 +178,7 @@ export default function Hero() {
 
         {/* CTA — stacked on mobile, side by side on desktop */}
         <motion.div
-          className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 px-4 sm:px-0"
+          className="flex flex-row justify-center gap-3 sm:gap-4 px-2 sm:px-0"
           variants={{
             hidden: { opacity: 0 },
             visible: { opacity: 1 },
@@ -187,7 +187,7 @@ export default function Hero() {
         >
           <motion.button
             onClick={() => router.push('/gallery')}
-            className="w-full sm:w-auto px-8 sm:px-10 py-4 font-bold uppercase tracking-wider text-sm sm:text-base"
+            className="px-5 sm:px-10 py-3 sm:py-4 font-bold uppercase tracking-wider text-xs sm:text-base"
             style={{ background: 'linear-gradient(135deg, #C4651A 0%, #A33A08 60%, #8B2500 100%)', color: '#f5e6d8', boxShadow: '0 0 25px rgba(139,37,0,0.6)', border: '1px solid rgba(180,70,15,0.4)' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
@@ -197,7 +197,7 @@ export default function Hero() {
 
           <motion.button
             onClick={() => router.push('/submit')}
-            className="w-full sm:w-auto px-8 sm:px-10 py-4 uppercase tracking-wider text-sm sm:text-base font-bold"
+            className="px-5 sm:px-10 py-3 sm:py-4 uppercase tracking-wider text-xs sm:text-base font-bold"
             style={{
               border: '2px solid #A33A08',
               color: '#f5e6d8',
@@ -217,7 +217,7 @@ export default function Hero() {
 
 {/* Slide indicator dots */}
         <motion.div
-          className="flex justify-center gap-2 mt-12 sm:mt-16"
+          className="flex justify-center gap-2 mt-6 sm:mt-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
