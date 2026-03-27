@@ -43,7 +43,6 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 1 }}
           animate={{
             opacity: 1,
-            // Reduce scale on mobile — less GPU work, still cinematic
             scale: isMobile ? 1.03 : 1.18,
           }}
           transition={{
@@ -53,7 +52,6 @@ export default function Hero() {
           style={{
             backgroundImage: `url(${heroImages[index]})`,
             backgroundSize: 'cover',
-            // Center on desktop, top on mobile so face is visible
             backgroundPosition: isMobile ? 'center top' : 'center',
             willChange: 'transform, opacity',
             filter: 'brightness(1.15) contrast(1.2) saturate(1.1)'
@@ -61,14 +59,8 @@ export default function Hero() {
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_55%,rgba(0,0,0,0.55)_100%)]" />
         <div className="absolute inset-0 mix-blend-overlay" style={{ background: 'rgba(120,40,8,0.08)' }} />
-
-        {/* Darkness */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/10 to-black/50" />
-
-        {/* Left side contrast — makes face pop */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/5 to-transparent" />
-
-        {/* Grain */}
         <div
           className="absolute inset-0 opacity-[0.14]"
           style={{
@@ -76,8 +68,6 @@ export default function Hero() {
               'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 100 100\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'3\' /%3E%3C/filter%3E%3Crect width=\'100\' height=\'100\' filter=\'url(%23n)\' /%3E%3C/svg%3E")',
           }}
         />
-
-        {/* GRID */}
         <div className="absolute inset-0 opacity-[0.02]">
           <div
             className="absolute inset-0"
@@ -107,12 +97,13 @@ export default function Hero() {
       >
         {/* TOP LINE */}
         <motion.p
-          className="tracking-[0.55em] uppercase mb-3 sm:mb-6"
+          className="uppercase"
           style={{
-            fontSize: isMobile ? '10px' : '11px',
+            fontSize: isMobile ? '9px' : '11px',
             color: 'rgba(196,101,26,0.75)',
             fontWeight: '700',
             letterSpacing: '0.55em',
+            marginBottom: isMobile ? '8px' : '24px',
           }}
           variants={{
             hidden: { opacity: 0, y: 20 },
@@ -125,12 +116,13 @@ export default function Hero() {
 
         {/* TITLE */}
         <motion.h1
-          className="text-white leading-none mb-3 sm:mb-6"
-style={{
-  fontFamily: 'var(--font-bebas)',
-  fontSize: isMobile ? 'clamp(2.4rem, 10vw, 3.2rem)' : '8rem',
-  letterSpacing: '0.08em',
-}}
+          className="text-white leading-none"
+          style={{
+            fontFamily: 'var(--font-bebas)',
+            fontSize: isMobile ? 'clamp(3rem, 18vw, 4rem)' : '8rem',
+            letterSpacing: '0.08em',
+            marginBottom: isMobile ? '6px' : '24px',
+          }}
           variants={{
             hidden: { opacity: 0, y: 30 },
             visible: { opacity: 1, y: 0 },
@@ -158,14 +150,15 @@ style={{
 
         {/* TAGLINE */}
         <motion.p
-          className="max-w-2xl mx-auto mb-6 sm:mb-12 px-2 sm:px-0"
+          className="max-w-2xl mx-auto px-2 sm:px-0"
           style={{
-            fontSize: isMobile ? '13px' : '15px',
+            fontSize: isMobile ? '10px' : '15px',
             letterSpacing: '0.18em',
             textTransform: 'uppercase',
             color: 'rgba(220,180,140,0.65)',
             fontWeight: '600',
             lineHeight: '1.8',
+            marginBottom: isMobile ? '20px' : '48px',
           }}
           variants={{
             hidden: { opacity: 0, y: 20 },
@@ -176,9 +169,9 @@ style={{
           Rage · Fire · Mass · Cinema
         </motion.p>
 
-        {/* CTA — stacked on mobile, side by side on desktop */}
+        {/* CTA — ALWAYS side by side (row) on both mobile and desktop */}
         <motion.div
-          className="flex flex-row justify-center gap-3 sm:gap-4 px-2 sm:px-0"
+          className="flex flex-row justify-center gap-3 sm:gap-4"
           variants={{
             hidden: { opacity: 0 },
             visible: { opacity: 1 },
@@ -187,8 +180,16 @@ style={{
         >
           <motion.button
             onClick={() => router.push('/gallery')}
-            className="px-5 sm:px-10 py-3 sm:py-4 font-bold uppercase tracking-wider text-xs sm:text-base"
-            style={{ background: 'linear-gradient(135deg, #C4651A 0%, #A33A08 60%, #8B2500 100%)', color: '#f5e6d8', boxShadow: '0 0 25px rgba(139,37,0,0.6)', border: '1px solid rgba(180,70,15,0.4)' }}
+            className="font-bold uppercase tracking-wider"
+            style={{
+              background: 'linear-gradient(135deg, #C4651A 0%, #A33A08 60%, #8B2500 100%)',
+              color: '#f5e6d8',
+              boxShadow: '0 0 25px rgba(139,37,0,0.6)',
+              border: '1px solid rgba(180,70,15,0.4)',
+              padding: isMobile ? '10px 18px' : '16px 40px',
+              fontSize: isMobile ? '11px' : '14px',
+              letterSpacing: isMobile ? '0.08em' : '0.1em',
+            }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
           >
@@ -197,12 +198,15 @@ style={{
 
           <motion.button
             onClick={() => router.push('/submit')}
-            className="px-5 sm:px-10 py-3 sm:py-4 uppercase tracking-wider text-xs sm:text-base font-bold"
+            className="uppercase tracking-wider font-bold"
             style={{
               border: '2px solid #A33A08',
               color: '#f5e6d8',
               background: 'rgba(139,37,0,0.25)',
               boxShadow: '0 0 18px rgba(139,37,0,0.35), inset 0 0 12px rgba(139,37,0,0.15)',
+              padding: isMobile ? '10px 18px' : '16px 40px',
+              fontSize: isMobile ? '11px' : '14px',
+              letterSpacing: isMobile ? '0.08em' : '0.1em',
             }}
             whileHover={{
               scale: 1.05,
@@ -215,9 +219,10 @@ style={{
           </motion.button>
         </motion.div>
 
-{/* Slide indicator dots */}
+        {/* Slide indicator dots */}
         <motion.div
-          className="flex justify-center gap-2 mt-6 sm:mt-16"
+          className="flex justify-center gap-2"
+          style={{ marginTop: isMobile ? '16px' : '64px' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
@@ -243,7 +248,7 @@ style={{
           ))}
         </motion.div>
 
-       {/* SCROLL indicator — animated arrow */}
+        {/* SCROLL indicator */}
         <motion.div
           className="absolute left-1/2 -translate-x-1/2 flex flex-col items-center gap-1"
           style={{ bottom: isMobile ? '12px' : '20px' }}
