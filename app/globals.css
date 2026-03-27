@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@layer base {
+  :root {
+    /* ── RAW MASS PALETTE ── */
+    --background: 15 8% 4%;        /* #0a0604 dark earth-black */
+    --foreground: 0 0% 100%;
+    --card: 20 10% 7%;             /* #130c08 dark rust-black */
+    --card-foreground: 0 0% 98%;
+    --popover: 20 10% 7%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 18 80% 35%;         /* #a33a08 deep rust */
+    --primary-foreground: 0 0% 98%;
+    --secondary: 20 8% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 20 8% 18%;
+    --muted-foreground: 20 15% 60%;
+    --accent: 18 75% 38%;          /* #ab3e0a burnt rust */
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 20 12% 16%;          /* dark rust border */
+    --input: 20 10% 10%;
+    --ring: 18 80% 35%;
+    --chart-1: 18 80% 35%;
+    --chart-2: 0 70% 30%;
+    --chart-3: 25 65% 32%;
+    --chart-4: 12 75% 28%;
+    --chart-5: 20 70% 35%;
+    --radius: 0.5rem;
+    --sidebar-background: 15 8% 5%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 18 80% 35%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 18 75% 38%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 20 12% 14%;
+    --sidebar-ring: 18 80% 35%;
+  }
+  .dark {
+    /* ── RAW MASS PALETTE (dark mode same) ── */
+    --background: 15 8% 4%;
+    --foreground: 0 0% 100%;
+    --card: 20 10% 7%;
+    --card-foreground: 0 0% 98%;
+    --popover: 20 10% 7%;
+    --popover-foreground: 0 0% 100%;
+    --primary: 18 80% 35%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 20 8% 12%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 20 8% 18%;
+    --muted-foreground: 20 15% 60%;
+    --accent: 18 75% 38%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 20 12% 16%;
+    --input: 20 10% 10%;
+    --ring: 18 80% 35%;
+    --chart-1: 18 80% 35%;
+    --chart-2: 0 70% 30%;
+    --chart-3: 25 65% 32%;
+    --chart-4: 12 75% 28%;
+    --chart-5: 20 70% 35%;
+    --sidebar-background: 15 8% 5%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 18 80% 35%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 18 75% 38%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 20 12% 14%;
+    --sidebar-ring: 18 80% 35%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+:root {
+  --font-heading: var(--font-bebas);
+  --font-body: var(--font-inter);
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+.font-heading {
+  font-family: var(--font-playfair);
+}
+
+.font-body {
+  font-family: var(--font-inter);
+}
+@layer base {
+  .font-heading {
+    font-family: var(--font-bebas), sans-serif;
+  }
+
+  .font-body {
+    font-family: var(--font-inter), sans-serif;
+  }
+}
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-spin-slow {
+  animation: spinSlow 6s linear infinite;
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
