@@ -14,9 +14,16 @@ export default function Hero() {
     '/hero/rc-4.jpeg',
   ]
 
+  // Each image has its own ideal focal point for mobile
+  const mobilePositions = [
+    'center 30%',   // rc-1: adjust to show subject
+    'center 30%',   // rc-2: Ram Charan face — show upper portion
+    'center 30%',   // rc-3: show upper portion
+    '70% center',   // rc-4: horse image — shift right to show rider
+  ]
+
   const [index, setIndex] = useState(0)
 
-  // ── Mobile detection ──────────────────────────────
   const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 640)
@@ -52,7 +59,8 @@ export default function Hero() {
           style={{
             backgroundImage: `url(${heroImages[index]})`,
             backgroundSize: 'cover',
-            backgroundPosition: isMobile ? 'center top' : 'center',
+            // Use per-image mobile position instead of blanket 'center top'
+            backgroundPosition: isMobile ? mobilePositions[index] : 'center',
             willChange: 'transform, opacity',
             filter: 'brightness(1.15) contrast(1.2) saturate(1.1)'
           }}
@@ -82,16 +90,19 @@ export default function Hero() {
 
       {/* ================= CONTENT ================= */}
       <motion.div
-        className="relative z-10 w-full max-w-5xl mx-auto px-5 sm:px-6 text-center"
+        className="relative z-10 w-full max-w-5xl mx-auto text-center"
+        style={{
+          paddingLeft: isMobile ? '20px' : '24px',
+          paddingRight: isMobile ? '20px' : '24px',
+          // Shift content up on mobile so it sits in upper-center, not lower-center
+          marginTop: isMobile ? '-60px' : '0px',
+        }}
         initial="hidden"
         animate="visible"
         variants={{
           hidden: {},
           visible: {
-            transition: {
-              staggerChildren: 0.25,
-              delayChildren: 0.4,
-            },
+            transition: { staggerChildren: 0.25, delayChildren: 0.4 },
           },
         }}
       >
@@ -105,10 +116,7 @@ export default function Hero() {
             letterSpacing: '0.55em',
             marginBottom: isMobile ? '8px' : '24px',
           }}
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
+          variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
           transition={{ duration: 0.8, ease: 'easeOut' }}
         >
           Mega Power Star
@@ -121,17 +129,15 @@ export default function Hero() {
             fontFamily: 'var(--font-bebas)',
             fontSize: isMobile ? 'clamp(3rem, 18vw, 4rem)' : '8rem',
             letterSpacing: '0.08em',
-            marginBottom: isMobile ? '6px' : '24px',
+            marginBottom: isMobile ? '4px' : '24px',
           }}
-          variants={{
-            hidden: { opacity: 0, y: 30 },
-            visible: { opacity: 1, y: 0 },
-          }}
+          variants={{ hidden: { opacity: 0, y: 30 }, visible: { opacity: 1, y: 0 } }}
           transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
         >
           RAM <br />
-          <span style={{ color: '#C4651A', filter: 'drop-shadow(0 0 25px rgba(160,60,8,0.8))', fontFamily: 'var(--font-bebas)' }}>CHARAN</span>
-          {/* Orange glow underline */}
+          <span style={{ color: '#C4651A', filter: 'drop-shadow(0 0 25px rgba(160,60,8,0.8))', fontFamily: 'var(--font-bebas)' }}>
+            CHARAN
+          </span>
           <motion.div
             className="mx-auto mt-2"
             initial={{ scaleX: 0, opacity: 0 }}
@@ -150,7 +156,7 @@ export default function Hero() {
 
         {/* TAGLINE */}
         <motion.p
-          className="max-w-2xl mx-auto px-2 sm:px-0"
+          className="max-w-2xl mx-auto"
           style={{
             fontSize: isMobile ? '10px' : '15px',
             letterSpacing: '0.18em',
@@ -158,37 +164,32 @@ export default function Hero() {
             color: 'rgba(220,180,140,0.65)',
             fontWeight: '600',
             lineHeight: '1.8',
-            marginBottom: isMobile ? '20px' : '48px',
+            marginBottom: isMobile ? '18px' : '48px',
           }}
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
+          variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
           transition={{ duration: 0.8, delay: 0.1 }}
         >
           Rage · Fire · Mass · Cinema
         </motion.p>
 
-        {/* CTA — ALWAYS side by side (row) on both mobile and desktop */}
+        {/* CTA — always side by side on both mobile & desktop */}
         <motion.div
-          className="flex flex-row justify-center gap-3 sm:gap-4"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1 },
-          }}
+          className="flex flex-row justify-center"
+          style={{ gap: isMobile ? '10px' : '16px' }}
+          variants={{ hidden: { opacity: 0 }, visible: { opacity: 1 } }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <motion.button
             onClick={() => router.push('/gallery')}
-            className="font-bold uppercase tracking-wider"
+            className="font-bold uppercase"
             style={{
               background: 'linear-gradient(135deg, #C4651A 0%, #A33A08 60%, #8B2500 100%)',
               color: '#f5e6d8',
               boxShadow: '0 0 25px rgba(139,37,0,0.6)',
               border: '1px solid rgba(180,70,15,0.4)',
-              padding: isMobile ? '10px 18px' : '16px 40px',
+              padding: isMobile ? '11px 20px' : '16px 40px',
               fontSize: isMobile ? '11px' : '14px',
-              letterSpacing: isMobile ? '0.08em' : '0.1em',
+              letterSpacing: isMobile ? '0.07em' : '0.1em',
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
@@ -198,21 +199,17 @@ export default function Hero() {
 
           <motion.button
             onClick={() => router.push('/submit')}
-            className="uppercase tracking-wider font-bold"
+            className="uppercase font-bold"
             style={{
               border: '2px solid #A33A08',
               color: '#f5e6d8',
               background: 'rgba(139,37,0,0.25)',
               boxShadow: '0 0 18px rgba(139,37,0,0.35), inset 0 0 12px rgba(139,37,0,0.15)',
-              padding: isMobile ? '10px 18px' : '16px 40px',
+              padding: isMobile ? '11px 20px' : '16px 40px',
               fontSize: isMobile ? '11px' : '14px',
-              letterSpacing: isMobile ? '0.08em' : '0.1em',
+              letterSpacing: isMobile ? '0.07em' : '0.1em',
             }}
-            whileHover={{
-              scale: 1.05,
-              background: 'rgba(139,37,0,0.45)',
-              boxShadow: '0 0 28px rgba(163,58,8,0.55)',
-            }}
+            whileHover={{ scale: 1.05, background: 'rgba(139,37,0,0.45)', boxShadow: '0 0 28px rgba(163,58,8,0.55)' }}
             whileTap={{ scale: 0.97 }}
           >
             Submit Creation
@@ -222,7 +219,7 @@ export default function Hero() {
         {/* Slide indicator dots */}
         <motion.div
           className="flex justify-center gap-2"
-          style={{ marginTop: isMobile ? '16px' : '64px' }}
+          style={{ marginTop: isMobile ? '14px' : '64px' }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
@@ -235,14 +232,10 @@ export default function Hero() {
               style={{
                 width: i === index ? (isMobile ? '20px' : '24px') : (isMobile ? '6px' : '7px'),
                 height: isMobile ? '6px' : '7px',
-                background: i === index
-                  ? 'linear-gradient(90deg, #6B1A02, #A33A08)'
-                  : 'rgba(255,255,255,0.25)',
+                background: i === index ? 'linear-gradient(90deg, #6B1A02, #A33A08)' : 'rgba(255,255,255,0.25)',
                 boxShadow: i === index ? '0 0 8px rgba(139,58,15,0.7)' : 'none',
               }}
-              animate={{
-                width: i === index ? (isMobile ? 20 : 24) : (isMobile ? 6 : 7),
-              }}
+              animate={{ width: i === index ? (isMobile ? 20 : 24) : (isMobile ? 6 : 7) }}
               transition={{ duration: 0.3 }}
             />
           ))}
@@ -256,20 +249,8 @@ export default function Hero() {
           transition={{ duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
         >
           <span className="text-[9px] tracking-[0.4em] uppercase text-white/30">Scroll</span>
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 18 18"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M9 3 L9 15 M9 15 L4 10 M9 15 L14 10"
-              stroke="rgba(163,58,8,0.6)"
-              strokeWidth="1.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M9 3 L9 15 M9 15 L4 10 M9 15 L14 10" stroke="rgba(163,58,8,0.6)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </motion.div>
       </motion.div>
