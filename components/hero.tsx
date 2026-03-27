@@ -128,7 +128,7 @@ export default function Hero() {
           className="text-white leading-none mb-5 sm:mb-6"
           style={{
             fontFamily: 'var(--font-bebas)',
-            fontSize: isMobile ? '3.5rem' : '8rem',
+            fontSize: isMobile ? 'clamp(2.8rem, 11vw, 3.5rem)' : '8rem',
             letterSpacing: '0.08em',
           }}
           variants={{

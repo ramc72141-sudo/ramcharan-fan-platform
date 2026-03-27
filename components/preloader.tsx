@@ -60,7 +60,7 @@ export default function Preloader({ onComplete }: { onComplete?: () => void }) {
   // ── Responsive sizing ─────────────────────────────────────
   const starSize      = isMobile ? 320 : 660
   const starHeight    = isMobile ? 360 : 750
-  const titleSize     = isMobile ? 'clamp(48px, 17vw, 145px)' : 'clamp(80px, 13vw, 145px)'
+  const titleSize = isMobile ? 'clamp(36px, 11vw, 72px)' : 'clamp(80px, 13vw, 145px)'
   const subtitleSize  = isMobile ? 'clamp(8px, 2.5vw, 16px)' : 'clamp(12px, 1.6vw, 16px)'
   const particleCount = isMobile ? 12 : 25
 
@@ -411,7 +411,7 @@ style={{ height: '100dvh' }}
       {/* ===== TITLE CARD — appears after star settles ===== */}
       <div
         className="relative z-20 text-center px-4 w-full"
-        style={{ marginTop: isMobile ? '25px' : '60px' }}
+        style={{ marginTop: isMobile ? '-20px' : '60px' }}
       >
 
         {/* SUBTITLE — subtle, secondary */}
@@ -440,7 +440,8 @@ style={{ height: '100dvh' }}
         {/* MAIN TITLE */}
         <div
           className="flex justify-center items-center flex-wrap"
-          style={{ gap: isMobile ? '0px' : '4px' }}
+          style={{ gap: isMobile ? '0px' : '4px',
+flexWrap: 'nowrap' as const }}
         >
 
           {/* RAM */}
