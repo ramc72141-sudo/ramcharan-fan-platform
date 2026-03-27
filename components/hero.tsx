@@ -33,7 +33,7 @@ export default function Hero() {
   }, [])
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-black">
+    <section className="relative min-h-[100dvh] flex items-center justify-center overflow-hidden bg-black">
 
       {/* ================= SLIDESHOW ================= */}
       <div className="absolute inset-0 z-0">
@@ -44,7 +44,7 @@ export default function Hero() {
           animate={{
             opacity: 1,
             // Reduce scale on mobile — less GPU work, still cinematic
-            scale: isMobile ? 1.08 : 1.18,
+            scale: isMobile ? 1.03 : 1.18,
           }}
           transition={{
             opacity: { duration: 2.2, ease: 'easeInOut' },
@@ -128,7 +128,7 @@ export default function Hero() {
           className="text-white leading-none mb-5 sm:mb-6"
           style={{
             fontFamily: 'var(--font-bebas)',
-            fontSize: isMobile ? '5rem' : '8rem',
+            fontSize: isMobile ? '3.5rem' : '8rem',
             letterSpacing: '0.08em',
           }}
           variants={{
